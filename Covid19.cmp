@@ -1,0 +1,83 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="Covid19APIWS" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="cases" type="integer" default=""/>
+    <aura:attribute name="todayCases" type="integer" default=""/>
+    <aura:attribute name="todayDeaths" type="integer" default=""/>
+    <aura:attribute name="active" type="integer" default=""/>
+    <aura:attribute name="critical" type="integer" default=""/>
+    <aura:attribute name="casesPerOneMillion" type="integer" default=""/>
+    <aura:attribute name="deathsPerOneMillion" type="integer" default=""/>
+    <aura:attribute name="testsPerOneMillion" type="integer" default=""/>
+    <aura:attribute name="counrty" type="String" default="India"/>
+    <aura:attribute name="jsonArray" type="Object[]"/>
+    <aura:attribute name="countryInfo" type="Object"/>
+    <aura:attribute name="SelectedCountry" type="String"/>
+    <div class="form-group" >
+        <lightning:select aura:id="AllCountry"  name="AllCountry" value="{!v.SelectedCountry}" label="Select Country" required="false" onchange="{!c.handleClick}">
+            <option value="">--None--</option>
+            <aura:iteration items="{!v.jsonArray}" var="cont" indexVar="key">
+                <option text="{!cont.country}" value="{!cont.country}" selected="{!cont.selected}"/>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds_custom">
+        <tbody>
+            <tr class="slds-hint-parent">
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate FontSize" title="Cases">
+                        <a href="javascript:void(0);" tabindex="-1">Cases</a>
+                        <br/><ui:outputText value="{!v.cases}"/> 
+                    </div>
+                </th>
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Today Cases">
+                        <a href="javascript:void(0);" tabindex="-1">Today Cases</a>
+                        <br/><ui:outputText value="{!v.todayCases}"/>
+                    </div>
+                </th>
+                
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Today Deaths">
+                        <a href="javascript:void(0);" tabindex="-1">Today Deaths</a>
+                        <br/><ui:outputText value="{!v.todayDeaths}"/>
+                    </div>
+                </th>
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Active">
+                        <a href="javascript:void(0);" tabindex="-1">Active</a>
+                        <br/><ui:outputText value="{!v.active}"/>
+                    </div>
+                </th>	
+            </tr>
+            
+            <tr class="slds-hint-parent">
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Critical">
+                        <a href="javascript:void(0);" tabindex="-1">Critical</a>
+                        <br/><ui:outputText value="{!v.critical}"/> 
+                    </div>
+                </th>
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Cases Per OneMillion">
+                        <a href="javascript:void(0);" tabindex="-1">Cases Per OneMillion</a>
+                        <br/><ui:outputText value="{!v.casesPerOneMillion}"/>
+                    </div>
+                </th>
+                
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Deaths Per OneMillion">
+                        <a href="javascript:void(0);" tabindex="-1">Deaths Per OneMillion</a>
+                        <br/><ui:outputText value="{!v.deathsPerOneMillion}"/>
+                    </div>
+                </th>
+                <th data-label="Covid-19 Details" scope="row">
+                    <div class="slds-truncate" title="Tests Per OneMillion">
+                        <a href="javascript:void(0);" tabindex="-1">Tests Per OneMillion</a>
+                        <br/><ui:outputText value="{!v.testsPerOneMillion}"/>
+                    </div>
+                </th>	
+            </tr>
+        </tbody>
+    </table>
+    <c:Covid19CountryInfo countryInfo="{!v.countryInfo}" country="{!v.SelectedCountry}"/>
+</aura:component>

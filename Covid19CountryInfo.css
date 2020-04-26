@@ -1,0 +1,11 @@
+.THIS .Img_Size {
+    max-width: 12%;
+    float: right;
+    margin-bottom: 12px;
+}
+.THIS .info {
+    background-color: gray;
+    color: antiquewhite;
+    margin: 0;
+    text-decoration: solid;
+}

@@ -1,0 +1,13 @@
+.THIS div {
+    font-size: 18px;
+}
+.THIS.slds_custom{
+    border: 2px #E12D71 solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.THIS .slds-form-element__label{
+    font-size: 20px;
+    margin-bottom: 17px;
+    font-weight: bold;
+}
